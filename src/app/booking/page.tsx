@@ -24,7 +24,7 @@ export default function Booking() {
             const item:BookingItem = {
                 bookingDate: dayjs(bookingDate).format('YYYY/MM/DD'),
                 checkoutDate: dayjs(checkoutDate).format('YYYY/MM/DD'),
-                user: session?.user?.name,
+                user: session?.user?.name || '',
                 hotel: name,
             }
             dispatch(addBooking(item))
