@@ -1,5 +1,4 @@
 'use client'
-import { useWindowListener } from "@/hooks/useWindowListener"
 import { useRef, useEffect, useState } from "react"
 
 export function VlogPlayer({vdoSrc, isPlaying}: {vdoSrc:string, isPlaying:boolean}){
@@ -18,7 +17,7 @@ export function VlogPlayer({vdoSrc, isPlaying}: {vdoSrc:string, isPlaying:boolea
         }
     }, [isPlaying])
 
-    useWindowListener('resize', (e)=>{alert('Window Width is '+(e.target as Window).innerWidth)})
+    // useWindowListener('resize', (e)=>{alert('Window Width is '+(e.target as Window).innerWidth)})
     
     return(
         <video className="w-[40%]" src={vdoSrc} ref={vdoRef} loop muted controls/>

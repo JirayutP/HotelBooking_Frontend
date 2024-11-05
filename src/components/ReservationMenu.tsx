@@ -1,8 +1,6 @@
-import styles from './reservationmenu.module.css'
-
 export default function ReservationMenu() {
     return(
-        <div className={styles.submenu}>
+        <div className="w-64 bg-white rounded-lg border border-silver p-2.5 m-1.5">
             Sub-Menu Here
         </div>
     )
