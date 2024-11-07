@@ -2,7 +2,6 @@ import getHotels from "@/libs/getHotels"
 import HotelCatalog from "@/components/HotelCatalog"
 import { Suspense } from "react"
 import { LinearProgress } from "@mui/material"
-import CardPanel from "@/components/CardPanel"
 
 export default function Hotel() {
 
