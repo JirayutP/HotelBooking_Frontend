@@ -1,3 +1,11 @@
+export interface LocalBookingItem{
+    bookingDate: string,
+    checkoutDate: string,
+    user: string,
+    hotel: string,
+    createdAt: string,
+}
+
 export interface BookingItem{
     _id: string,
     bookingDate: string,

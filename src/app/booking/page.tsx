@@ -5,7 +5,7 @@ import { useState } from "react"
 import dayjs, { Dayjs } from "dayjs"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/redux/store"
-import { BookingItem } from "../../../interface"
+import { LocalBookingItem } from "../../../interface"
 import { addBooking} from "@/redux/features/bookSlice"
 import { useSession } from "next-auth/react"
 
@@ -21,7 +21,7 @@ export default function Booking() {
     const dispatch = useDispatch<AppDispatch>()
     const makeBooking = () => {
         if(hid && name && bookingDate && checkoutDate){
-            const item:BookingItem = {
+            const item:LocalBookingItem = {
                 bookingDate: dayjs(bookingDate).format('YYYY/MM/DD'),
                 checkoutDate: dayjs(checkoutDate).format('YYYY/MM/DD'),
                 user: session?.user?.name || '',
