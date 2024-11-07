@@ -7,6 +7,7 @@ export interface BookingItem{
 }
 
 export interface HotelItem{
+    _id: string,
     name: string,
     address: string,
     district: number,
@@ -14,4 +15,12 @@ export interface HotelItem{
     postalcode: string,
     tel: number,
     picture: string,
+    __v: number
 }
+
+export interface HotelJson {
+    success: boolean,
+    count: number,
+    pagination: Object,
+    data: HotelItem[]
+  }

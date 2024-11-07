@@ -2,8 +2,9 @@
 import Link from "next/link";
 import Card from "./Card";
 import { useReducer } from "react";
+import { HotelItem, HotelJson } from "../../interface";
 
-export default async function HotelCatalog({hotelJson}: {hotelJson:Object}){
+export default async function HotelCatalog({hotelJson}: {hotelJson:Promise<HotelJson>}){
 
     const ratingReducer = (ratingList:Map<string, number>, action:{type:string, hotelName:string, rating:number})=>{
         switch(action.type){
@@ -45,8 +46,8 @@ export default async function HotelCatalog({hotelJson}: {hotelJson:Object}){
             Explore {hotelJsonReady.count} hotels in our catalog
             <div style={{margin:"20px", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"space-around", alignContent:"space-around", padding:'10px'}}>
                 {
-                    hotelJsonReady.data.map((hotelItem:Object)=>(
-                        <Link href={`/hotel/${hotelItem.id}`} className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%]
+                    hotelJsonReady.data.map((hotelItem:HotelItem)=>(
+                        <Link href={`/hotel/${hotelItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%]
                                                                         p-2 sm:p-4 md:p-4 lg:p-8">
                             <Card hotelName={hotelItem.name} imgSrc={hotelItem.picture}
                             onCompare={(hotel:string)=>dispatchCompare({type:'add', hotelName:hotel})}
