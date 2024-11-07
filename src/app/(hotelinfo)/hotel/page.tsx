@@ -14,10 +14,6 @@ export default function Hotel() {
             <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
                 <HotelCatalog hotelJson={hotels}/>
             </Suspense>
-
-            <hr className="my-10"/>
-            <h1 className="text-xl font-medium">Try Client-side Hotel Panel</h1>
-            <CardPanel/>
         </main>
     )
 }
