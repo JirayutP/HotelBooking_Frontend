@@ -1,8 +1,8 @@
 export default async function getHotels() {
     
-    await new Promise((resolve)=>setTimeout(resolve, 5000))
+    // await new Promise((resolve)=>setTimeout(resolve, 5000))
     
-    const response = await fetch('https://hotel-booking-backend-sage.vercel.app/api/v1/hotels', { next: { tags:['hotels']}})
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/hotels`, { next: { tags:['hotels']}})
     if(!response.ok){
         throw new Error('Failed to fetch hotels')
     }

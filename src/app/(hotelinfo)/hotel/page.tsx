@@ -2,10 +2,11 @@ import getHotels from "@/libs/getHotels"
 import HotelCatalog from "@/components/HotelCatalog"
 import { Suspense } from "react"
 import { LinearProgress } from "@mui/material"
+import { HotelJson } from "../../../../interface"
 
-export default function Hotel() {
+export default async function Hotel() {
 
-    const hotels = getHotels()
+    const hotels:Promise<HotelJson> = await getHotels()
     
     return(
         <main className="text-center p-5">
