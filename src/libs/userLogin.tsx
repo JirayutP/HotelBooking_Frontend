@@ -10,7 +10,7 @@ export default async function userLogin(userEmail:string, userPassword:string) {
         }),
     })
     if(!response.ok){
-        throw new Error('Fail to Log-in')
+        alert('Fail to Log-in');
     }
 
     return await response.json()
