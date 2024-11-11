@@ -16,13 +16,11 @@ export default async function TopMenu() {
                 height={0}
                 sizes='100vh'/>
             </Link>
-            <TopMenuItem title='Booking' pageRef='/booking'/>
             <TopMenuItem title='Manage' pageRef='/booking/manage'/>
-            <TopMenuItem title='About' pageRef='/about'/>
             <TopMenuItem title='Select Hotel' pageRef='/hotel'/>
+            <TopMenuItem title='My Booking' pageRef='/mybooking'/> 
             
-            <div className='flex flex-row absolute right-0 h-full'>
-                <TopMenuItem title='My Booking' pageRef='/mybooking'/>   
+            <div className='flex flex-row absolute right-0 h-full'>  
                 {
                     session? <Link href='/api/auth/signout'>
                         <div className='flex items-center h-full px-2 text-cyan-600 text-sm'>
