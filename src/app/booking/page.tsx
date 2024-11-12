@@ -8,6 +8,7 @@ import { AppDispatch } from "@/redux/store"
 import { LocalBookingItem } from "../../../interface"
 import { addBooking} from "@/redux/features/bookSlice"
 import { useSession } from "next-auth/react"
+import bookHotel from "@/libs/bookHotel"
 
 export default function Booking() {
     const urlParams = useSearchParams()
@@ -18,19 +19,19 @@ export default function Booking() {
     const [bookingDate, setBookingDate] = useState<Dayjs|null>(null)
     const [checkoutDate, setCheckoutDate] = useState<Dayjs|null>(null)
 
-    const dispatch = useDispatch<AppDispatch>()
-    const makeBooking = () => {
-        if(hid && name && bookingDate && checkoutDate){
-            const item:LocalBookingItem = {
-                bookingDate: dayjs(bookingDate).format('YYYY/MM/DD'),
-                checkoutDate: dayjs(checkoutDate).format('YYYY/MM/DD'),
-                user: session?.user?.name || '',
-                hotel: name,
-                createdAt: dayjs().format('YYYY/MM/DD')
-            }
-            dispatch(addBooking(item))
-        }
-    }
+    // const dispatch = useDispatch<AppDispatch>()
+    // const makeBooking = () => {
+    //     if(hid && name && bookingDate && checkoutDate){
+    //         const item:LocalBookingItem = {
+    //             bookingDate: dayjs(bookingDate).format('YYYY/MM/DD'),
+    //             checkoutDate: dayjs(checkoutDate).format('YYYY/MM/DD'),
+    //             user: session?.user?.name || '',
+    //             hotel: name,
+    //             createdAt: dayjs().format('YYYY/MM/DD')
+    //         }
+    //         dispatch(addBooking(item))
+    //     }
+    // }
 
     return(
         <main className="w-[100%] flex flex-col items-center space-y-4">
@@ -47,7 +48,9 @@ export default function Booking() {
             </div>
 
             <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-                onClick={makeBooking}>
+                onClick={()=>{
+                    bookHotel(hid || "", session?.user.token || "", dayjs(bookingDate).format('YYYY/MM/DD'), dayjs(checkoutDate).format('YYYY/MM/DD'), dayjs().format('YYYY/MM/DD') )
+                }}>
                 Book this hotel
             </button>
         </main>
