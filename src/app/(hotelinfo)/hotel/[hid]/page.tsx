@@ -8,6 +8,7 @@ import AdminHotelButton from "@/components/AdminHotelButton"
 import { revalidateTag } from "next/cache"
 
 export default async function HotelDetailPage({params}:{params:{hid:string}}){
+    
     revalidateTag('hotel')
     const hotelDetail = await getHotel(params.hid)
     const hotelData = hotelDetail.data
