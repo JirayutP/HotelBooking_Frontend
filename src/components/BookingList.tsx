@@ -1,39 +1,39 @@
 'use client'
+import deleteBooking from "@/libs/deleteBooking"
+import { useRouter } from "next/navigation"
 
-import { useAppSelector, AppDispatch } from "@/redux/store"
-import { useDispatch } from "react-redux"
-import { removeBooking } from "@/redux/features/bookSlice"
-import dayjs from "dayjs"
+export default function ReservationCart({ HotelName, check_in, check_out, id, token, BookerName } : { HotelName: string, check_in: string, check_out: string, id: string, token: string, BookerName?: string }) {
+  const router = useRouter()
+  const formattedCheckIn = check_in.slice(0, 10)
+  const formattedCheckOut = check_out.slice(0, 10)
 
-export default function ReservationCart() {
-    const bookItem = useAppSelector((state)=> state.reduxPersistedReducer.bookSlice.bookItems)
-    const dispatch = useDispatch<AppDispatch>()
-    
-    return(
-        <>
-            {
-                bookItem.length > 0 ? (
-                    bookItem.map((bookingItem)=>(
-                        <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2"
-                        key={bookingItem.user}>
-                            <div className="text-xl">Booking Date: {bookingItem.bookingDate}</div>
-                            <div className="text-xl">Checkout Date: {bookingItem.checkoutDate}</div>
-                            <div className="text-xl">User: {bookingItem.user}</div>
-                            <div className="text-xl">Hotel: {bookingItem.hotel}</div>
-                            <div className="text-xl">Created At: {bookingItem.createdAt}</div>
-                            <div className="text-xl">Duration: {dayjs(bookingItem.checkoutDate).diff(dayjs(bookingItem.bookingDate), 'day')}</div>
-                            <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-                                onClick={()=> dispatch(removeBooking(bookingItem))}>
-                                    Remove from Booking List
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2">
-                        No Hotel Booking
-                    </div>
-                )
-            }
-        </>
-    )
+  return (
+    <div className="max-w-lg border border-gray-300 rounded-lg shadow-lg overflow-hidden bg-white flex flex-col sm:flex-row m-4 hover:shadow-xl transition-shadow duration-200">
+      <div className="p-4 flex-grow">
+        <h2 className="text-lg font-semibold text-gray-800">{HotelName}</h2>
+        {BookerName && (
+          <p className="text-sm text-gray-600 mt-1">Booked by: <span className="font-medium">{BookerName}</span></p>
+        )}
+        <p className="text-sm text-gray-600 mt-2">Check-in date: <span className="font-medium">{formattedCheckIn}</span></p>
+        <p className="text-sm text-gray-600">Check-out date: <span className="font-medium">{formattedCheckOut}</span></p>
+      </div>
+      <div className="p-4 flex sm:flex-col justify-center items-center gap-2 border-t sm:border-t-0 sm:border-l border-gray-200">
+        <button
+          className="block w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow transition-all duration-200"
+          onClick={() => { router.push(`editbooking/${id}`) }}
+        >
+          Edit
+        </button>
+        <button
+          className="block w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md shadow transition-all duration-200"
+          onClick={() => {
+            deleteBooking(id, token)
+            setTimeout(() => { router.refresh() }, 1000)
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  )
 }
