@@ -4,11 +4,11 @@ import Link from "next/link"
 import { getServerSession } from "next-auth"
 import getUserProfile from "@/libs/getUserProfile"
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions"
-import AdminHotelButton from "@/components/AdminHotelButton"
+import AdminHotelButton from "@/components/adminHotelButton"
 import { revalidateTag } from "next/cache"
 
 export default async function HotelDetailPage({params}:{params:{hid:string}}){
-    
+
     revalidateTag('hotel')
     const hotelDetail = await getHotel(params.hid)
     const hotelData = hotelDetail.data
