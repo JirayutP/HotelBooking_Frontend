@@ -8,7 +8,7 @@ export default async function TopMenu() {
     const session = await getServerSession(authOptions)
 
     return(
-        <div className='h-[50px] bg-white fixed top-0 left-0 right-0 z-30 border- border-t border-b border-gray-400 flex'>
+        <div className='h-[50px] bg-white fixed top-0 left-0 right-0 z-40 border- border-t border-b border-gray-400 flex'>
             <Link href="/">
                 <Image src={'/img/logo.jpg'} className='h-[100%] w-auto'
                 alt='logo'
