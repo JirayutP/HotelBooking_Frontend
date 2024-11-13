@@ -17,9 +17,9 @@ export default function RegisterPage() {
     const UserInfo = [name,email,tel,role,password]
 
     const response = await addUser(UserInfo)
-
-    if (response.ok) {
-      setTimeout(() => { router.push('/api/auth/signin') }, 1000)
+    if (response.success) {
+      setTimeout(() => { router.push('/api/auth/signin') }, 1000);
+      alert('Register success, please sign in');
     }
 
   }

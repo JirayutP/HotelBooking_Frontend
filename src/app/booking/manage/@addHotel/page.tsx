@@ -7,6 +7,9 @@ import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 
 function generateDirectDownloadLink(viewUrl: string) {
+    if (viewUrl.match(/https:\/\/drive\.google\.com\/uc\?export=download&id=.*$/)) {
+      return viewUrl; // URL is already in the desired format
+    }
     const match = viewUrl.match(/https:\/\/drive\.google\.com\/file\/d\/(.*?)\/view\?usp=.*$/);
     if (match && match[1]) {
       const fileId = match[1];
@@ -14,7 +17,7 @@ function generateDirectDownloadLink(viewUrl: string) {
     } else {
       return null; // Invalid URL format
     }
-}
+  }
 
 export default async function AddHotelPage(){
     const addHotel = async (addHotelForm:FormData) => {
@@ -76,7 +79,7 @@ export default async function AddHotelPage(){
                         <input type='text' required id='province' name='province' placeholder="Province"
                             className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus:outline-none focus:border-blue-400"/>
                         <label className="w-auto block text-gray-700 pr-4 ml-5" htmlFor='postalcode'>Postalcode</label>
-                        <input type='text' required id='postalcode' name='postalcode' placeholder="Postalcode" maxLength={50}
+                        <input type='text' required id='postalcode' name='postalcode' placeholder="Postalcode" maxLength={5}
                             className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus:outline-none focus:border-blue-400"/>
                     </div>
                     <div className="flex items-center w-1/2 my-2">
@@ -87,8 +90,8 @@ export default async function AddHotelPage(){
                     <div className="flex items-center w-1/2 my-2">
                         <label className="w-auto block text-gray-700 pr-4" htmlFor='picture'>Picture</label>
                         <input type='text' required id='picture' name='picture' placeholder="URL public share link from Google Drive (Don't change anything.)"
-                            pattern="https:\/\/drive\.google\.com\/file\/d\/[^\/]+\/view\?usp=.*"
-                            title='Must be in the format "https://drive.google.com/file/d/...id.../view?usp=drive_link"'
+                            pattern="https:\\/\\/drive\\.google\\.com\\/(?:file\\/d\\/[^\\/]+\\/view\\?usp=.*|uc\\?export=download&id=.*)"
+                            title='Must be in the format "https://drive.google.com/file/d/...id.../view?usp=drive_link" or "https://drive.google.com/uc?export=download&id=...id..."'
                             className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus:outline-none focus:border-blue-400"
                         />
                     </div>
