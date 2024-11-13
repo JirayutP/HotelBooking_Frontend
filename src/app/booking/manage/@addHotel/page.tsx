@@ -90,7 +90,7 @@ export default async function AddHotelPage(){
                     <div className="flex items-center w-1/2 my-2">
                         <label className="w-auto block text-gray-700 pr-4" htmlFor='picture'>Picture</label>
                         <input type='text' required id='picture' name='picture' placeholder="URL public share link from Google Drive (Don't change anything.)"
-                            pattern="https:\\/\\/drive\\.google\\.com\\/(?:file\\/d\\/[^\\/]+\\/view\\?usp=.*|uc\\?export=download&id=.*)"
+                            pattern="https:\/\/drive\.google\.com\/(file\/d\/.*?\/view\?usp=drive_link|uc\?export=download&id=.*)"
                             title='Must be in the format "https://drive.google.com/file/d/...id.../view?usp=drive_link" or "https://drive.google.com/uc?export=download&id=...id..."'
                             className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus:outline-none focus:border-blue-400"
                         />
