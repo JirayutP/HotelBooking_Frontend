@@ -4,32 +4,40 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs"
 import DateReserve from "@/components/DateReserve"
-//import { DateRange } from "react-day-picker"
-//import { addDays } from "date-fns"
-//import DatePicker from "./DatePicker";
-//import MyButton from "./MyButton";
 
 export default function EditBookingPane({bid,token} : {bid:string,token:string}) {
   
   const router = useRouter();
 
-//   const [date, setDate] = useState<DateRange | undefined>({
-//     from: new Date(2023, 10, 23),
-//     to: addDays(new Date(2023, 10, 23), 2),
-//   })
-    const [bookingDate, setBookingDate] = useState<Dayjs|null>(null)
-    const [checkoutDate, setCheckoutDate] = useState<Dayjs|null>(null)
+  const [bookingDate, setBookingDate] = useState<Dayjs|null>(null)
+  const [checkoutDate, setCheckoutDate] = useState<Dayjs|null>(null)
 
-//   function toModifyBooking() {
-//     editBooking(bid,token, addDays(date.from,1)?.toJSON().slice(0,10), addDays(date.to,1)?.toJSON().slice(0,10))
-//     .then(() => {
-//       router.push('/bookings');
-//       router.refresh();
-//     })
-//     .catch((error) => {
-//       alert("You can book a hotel only up to 3 nights")
-//     })
-//   }
+  const handleEditing = () => {
+    if (!bookingDate || !checkoutDate) {
+        alert("Please provide all booking details.");
+        return;
+    }
+
+    if (!bookingDate.isBefore(checkoutDate)) {
+        alert("The booking date must be before the checkout date, and they cannot be the same day.");
+        return;
+    }
+
+    const maxAllowedNights = 3;
+    const daysDiff = checkoutDate.diff(bookingDate, 'day');
+
+    if (daysDiff > maxAllowedNights) {
+        alert(`Bookings cannot exceed ${maxAllowedNights} nights. Please select a shorter stay.`);
+        return;
+    }
+    
+    editBooking(bid,token, dayjs(bookingDate).format('YYYY/MM/DD'), dayjs(checkoutDate).format('YYYY/MM/DD'))
+    .then(()=>{
+      router.push('/mybooking')
+      router.refresh();
+    });
+  };
+
   
   return(
     <div className="w-[100%] flex flex-col items-center space-y-4">
@@ -45,13 +53,7 @@ export default function EditBookingPane({bid,token} : {bid:string,token:string})
             </div>
 
             <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-                onClick={()=>{
-                    editBooking(bid,token, dayjs(bookingDate).format('YYYY/MM/DD'), dayjs(checkoutDate).format('YYYY/MM/DD'))
-                    .then(()=>{
-                        router.push('/mybooking')
-                        router.refresh();
-                    })
-                }}>
+                onClick={handleEditing}>
                 Submit
             </button>
     </div>
