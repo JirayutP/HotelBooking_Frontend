@@ -43,7 +43,7 @@ describe("Banner Component", () => {
 
   it("Should have top banner title", () => {
     render(<Banner />);
-    const bannerText = screen.getByText("Your Travel Partner");
+    const bannerText = screen.getByText("Discover Comfort Everywhere You Go");
     expect(bannerText).toBeInTheDocument();
   });
 
@@ -61,7 +61,7 @@ describe("Banner Component", () => {
 
   it("Should navigate to /hotel on button click", async () => {
     render(<Banner />);
-    const button = screen.getByRole("button", { name: /Select Your Travel Partner NOW/i });
+    const button = screen.getByRole("button", { name: /Book Your Hotel NOW/i });
     await userEvent.click(button);
     expect(mockPush).toHaveBeenCalledWith("/hotel");
   });
