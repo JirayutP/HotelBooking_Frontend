@@ -48,7 +48,8 @@ export default async function HotelCatalog({hotelJson}: {hotelJson:Promise<Hotel
                 {
                     hotelJsonReady.data.map((hotelItem:HotelItem)=>(
                         <Link href={`/hotel/${hotelItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%]
-                                                                        p-2 sm:p-4 md:p-4 lg:p-8">
+                                                                        p-2 sm:p-4 md:p-4 lg:p-8"
+                            key = {hotelItem._id}>
                             <Card hotelName={hotelItem.name} imgSrc={hotelItem.picture}
                             onCompare={(hotel:string)=>dispatchCompare({type:'add', hotelName:hotel})}
                             updateRating={(hotel:string,rate:number)=>dispatchRating({type:'update', hotelName:hotel, rating:rate})}

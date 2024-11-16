@@ -27,7 +27,7 @@ export interface HotelItem{
     _id: string,
     name: string,
     address: string,
-    district: number,
+    district: string,
     province: string,
     postalcode: string,
     tel: string,
