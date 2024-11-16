@@ -9,13 +9,13 @@ export default function ReservationCart({ HotelName, check_in, check_out, id, to
 
   return (
     <div className="max-w-lg border border-gray-300 rounded-lg shadow-lg overflow-hidden bg-white flex flex-col sm:flex-row m-4 hover:shadow-xl transition-shadow duration-200">
-      <div className="p-4 flex-grow">
-        <h2 className="text-lg font-semibold text-gray-800">{HotelName}</h2>
+      <div className="p-4 flex-grow overflow-hidden">
+        <h2 className="text-lg font-semibold text-gray-800 truncate" title={HotelName}>{HotelName}</h2>
         {BookerName && (
-          <p className="text-sm text-gray-600 mt-1">Booked by: <span className="font-medium">{BookerName}</span></p>
+          <p className="text-sm text-gray-600 mt-1 truncate" title={`Booked by: ${BookerName}`}>Booked by: <span className="font-medium">{BookerName}</span></p>
         )}
-        <p className="text-sm text-gray-600 mt-2">Check-in date: <span className="font-medium">{formattedCheckIn}</span></p>
-        <p className="text-sm text-gray-600">Check-out date: <span className="font-medium">{formattedCheckOut}</span></p>
+        <p className="text-sm text-gray-600 mt-2 truncate" title={`Check-in date: ${formattedCheckIn}`}>Check-in date: <span className="font-medium">{formattedCheckIn}</span></p>
+        <p className="text-sm text-gray-600 truncate" title={`Check-out date: ${formattedCheckOut}`}>Check-out date: <span className="font-medium">{formattedCheckOut}</span></p>
       </div>
       <div className="p-4 flex sm:flex-col justify-center items-center gap-2 border-t sm:border-t-0 sm:border-l border-gray-200">
         <button

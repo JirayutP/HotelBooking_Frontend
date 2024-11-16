@@ -24,6 +24,12 @@ export default function Booking() {
             return;
         }
     
+        const today = dayjs().startOf('day');
+        if (bookingDate.isBefore(today)) {
+            alert("The booking date cannot be in the past.");
+            return;
+        }
+    
         if (!bookingDate.isBefore(checkoutDate)) {
             alert("The booking date must be before the checkout date, and they cannot be the same day.");
             return;

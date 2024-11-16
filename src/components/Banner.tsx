@@ -27,16 +27,16 @@ export default function Banner() {
       {/* Title */}
       <div className="relative top-[120px] z-20 text-center">
         <h1 className="text-5xl font-bold text-slate-900 bg-white/60 py-2 px-6 rounded-lg shadow-lg">
-          Your Travel Partner
+          Discover Comfort Everywhere You Go
         </h1>
         <h3 className="text-2xl font-light text-slate-900 mt-2 bg-white/60 py-1 px-4 rounded-md shadow-sm">
-          Explore Your World with Us
+          Your Journey, Your Choice
         </h3>
       </div>
       {/* User Greeting */}
       {session ? (
         <div className="z-10 absolute top-5 right-10 text-lg font-semibold text-cyan-100 shadow-md px-4 py-2 bg-cyan-900/70 rounded-lg">
-          Hello {session.user?.name}
+          Welcome {session.user?.name}
         </div>
       ) : null}
       {/* Button */}
@@ -48,7 +48,7 @@ export default function Banner() {
           router.push('/hotel');
         }}
       >
-        Select Your Travel Partner NOW
+        Book Your Hotel NOW
       </button>
     </div>
   );
