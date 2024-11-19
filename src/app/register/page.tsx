@@ -26,6 +26,9 @@ export default function RegisterPage() {
   
   return(
     <main className="w-full flex flex-col items-center bg-white space-y-4 pt-2 pb-5">
+      <h1 className="text-2xl font-semibold text-gray-700 text-center mb-6">
+        Please, Fill In Your Information To Register
+      </h1>
       
       <form action={toAddUser} className="w-full bg-slate-100 m-5 p-5 flex flex-col items-center space-y-5 py-10">
         
@@ -89,7 +92,7 @@ export default function RegisterPage() {
 
         </div>
       
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">
+        <button type="submit" className="bg-sky-600 hover:bg-indigo-600 text-white p-2 rounded">
           Register
         </button>
 

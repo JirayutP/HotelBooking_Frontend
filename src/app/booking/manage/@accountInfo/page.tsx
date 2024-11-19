@@ -15,7 +15,7 @@ export default async function AccountInfoPage(){
 
     return(
         <main className="bg-slate-100 m-5 p-5">
-            <div className="text-2xl">{profile.data.name}</div>
+            <div className="text-2xl text-sky-600">{profile.data.name}</div>
             <table className="table-auto border-separate border-spacing-2"><tbody>
                 <tr><td>Email</td><td>{profile.data.email}</td></tr>
                 <tr><td>Tel.</td><td>{profile.data.tel}</td></tr>    
