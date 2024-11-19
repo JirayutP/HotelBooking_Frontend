@@ -14,7 +14,8 @@ export default async function bookHotel(hid:string,token:string,checkInDate:stri
     })
   
     if (!response.ok) {
-      throw new Error("Failed to book hotel");
+      alert("Failed to book hotel");
+      // throw new Error("Failed to book hotel");
     }
     return await response.json();
   

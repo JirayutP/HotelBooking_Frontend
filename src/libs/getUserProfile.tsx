@@ -7,7 +7,7 @@ export default async function getUserProfile(token:string) {
     })
 
     if(!response.ok){
-        throw new Error('Cannot get user profile')
+        alert("Cannot get user profile");
     }
     return await response.json()
 }

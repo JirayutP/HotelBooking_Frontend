@@ -8,7 +8,8 @@ export default async function deleteHotel(id:string,token:string) {
   })
 
   if (!response.ok) {
-    throw new Error("Failed to delete booking");
+    alert("Failed to delete booking");
+    // throw new Error("Failed to delete booking");
   }
   return await response.json();
 

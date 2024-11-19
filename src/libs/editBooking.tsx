@@ -13,7 +13,8 @@ export default async function editBooking(id:string,token:string,newCheckIn:stri
     })
   
     if (!response.ok) {
-      throw new Error("Failed to delete booking");
+      alert("Failed to delete booking");
+      // throw new Error("Failed to delete booking");
     }
     return await response.json();
   

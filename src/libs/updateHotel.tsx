@@ -18,7 +18,8 @@ export default async function updateHotel(hid:string,HotelInfo:string[],token:st
   })
 
   if (!response.ok) {
-    throw new Error("Failed to edit hotel");
+    alert("Failed to edit hotel");
+    // throw new Error("Failed to edit hotel");
   }
   return await response.json();
 
